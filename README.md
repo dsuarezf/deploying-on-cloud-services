@@ -1,2 +1,79 @@
-# s2i-ultratiny-service
-Source to Image Microservice
+# s2i-ultra-tiny-http-service
+
+This repository is an example of Source to Image (S2I) project to be deployed on Openshift Online. It
+is a basic 
+
+First of all we need to have the OpenShift CLI installed. It can be downloaded from the OpenShift
+site.
+
+The first step is to login by typing:
+
+    oc login
+    
+To create the project in OpenShift:
+
+    oc new-project my-java-project
+
+We'll use the S2I to deploy our application:
+
+    oc new-app redhat-openjdk18-openshift~https://github.com/dsuarezf/s2i-ultra-tiny-http-service.git
+    
+And this is the output:
+    
+    --> Found image 5331d25 (4 months old) in image stream "openshift/redhat-openjdk18-openshift" under tag "latest" for "redhat-openjdk18-openshift"
+    
+        Java Applications
+        -----------------
+        Platform for building and running plain Java applications (fat-jar and flat classpath)
+    
+        Tags: builder, java
+    
+        * A source build using source code from https://github.com/dsuarezf/s2i-ultra-tiny-http-service.git will be created
+          * The resulting image will be pushed to image stream "s2i-ultra-tiny-http-service:latest"
+          * Use 'start-build' to trigger a new build
+        * This image will be deployed in deployment config "s2i-ultra-tiny-http-service"
+        * Ports 8080/tcp, 8443/tcp, 8778/tcp will be load balanced by service "s2i-ultra-tiny-http-service"
+          * Other containers can access this service through the hostname "s2i-ultra-tiny-http-service"
+    
+    --> Creating resources ...
+        imagestream "s2i-ultra-tiny-http-service" created
+        buildconfig "s2i-ultra-tiny-http-service" created
+        deploymentconfig "s2i-ultra-tiny-http-service" created
+        service "s2i-ultra-tiny-http-service" created
+    --> Success
+        Build scheduled, use 'oc logs -f bc/s2i-ultra-tiny-http-service' to track its progress.
+        Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
+         'oc expose svc/s2i-ultra-tiny-http-service'
+        Run 'oc status' to view your app.
+
+As we can see within the output, OpenShift uploads the code and creates a builder container based on
+the image *redhat-openjedk18-openshift*.
+
+The builder's log can be seen by typing:
+
+    oc logs -f bc/s2i-ultra-tiny-http-service
+
+The container is deployed within a Kubernete's pod and run as a service, we can see the service status
+by typing:
+    
+    oc get service
+    
+    NAME                          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+    s2i-ultra-tiny-http-service   ClusterIP   172.30.137.215   <none>        8080/TCP,8443/TCP,8778/TCP   6m
+
+The just deployed service run within a cluster with IP 172.30.137.215 and ports 8080, 8443 and 8778.
+
+The service can be exposed using:
+
+    oc expose svc/s2i-ultra-tiny-http-service --port=8080
+    
+To delete the application:
+
+    oc delete all -l app=s2i-ultra-tiny-http-service
+
+To delete the project we can use the following command:
+
+    oc delete project <project-name>
+
+[1] https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
+[2] https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
