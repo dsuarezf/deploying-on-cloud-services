@@ -1,7 +1,8 @@
 # s2i-ultra-tiny-http-service
 
-This repository is an example of Source to Image (S2I) project to be deployed on Openshift Online. It
-is a basic 
+This repository is an example of Source to Image (S2I) project to be deployed on Openshift Online.
+
+The service itself is a tiny HTTP Server listening on port 8080.
 
 First of all we need to have the OpenShift CLI installed. It can be downloaded from the OpenShift
 site.
