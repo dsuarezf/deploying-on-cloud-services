@@ -76,5 +76,5 @@ To delete the project we can use the following command:
 
     oc delete project <project-name>
 
-[1] https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
-[2] https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
+* [1] https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
+* [2] https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
