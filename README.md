@@ -10,7 +10,7 @@ site.
 The first step is to login by typing:
 
     oc login
-    
+
 To create the project in OpenShift:
 
     oc new-project my-java-project
@@ -18,9 +18,9 @@ To create the project in OpenShift:
 We'll use the S2I to deploy our application:
 
     oc new-app redhat-openjdk18-openshift~https://github.com/dsuarezf/s2i-ultra-tiny-http-service.git
-    
+
 And this is the output:
-    
+
     --> Found image 5331d25 (4 months old) in image stream "openshift/redhat-openjdk18-openshift" under tag "latest" for "redhat-openjdk18-openshift"
     
         Java Applications
@@ -56,7 +56,7 @@ The builder's log can be seen by typing:
 
 The container is deployed within a Kubernete's pod and run as a service, we can see the service status
 by typing:
-    
+
     oc get service
     
     NAME                          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
@@ -67,7 +67,7 @@ The just deployed service run within a cluster with IP 172.30.137.215 and ports 
 The service can be exposed using:
 
     oc expose svc/s2i-ultra-tiny-http-service --port=8080
-    
+
 To delete the application:
 
     oc delete all -l app=s2i-ultra-tiny-http-service
@@ -75,6 +75,8 @@ To delete the application:
 To delete the project we can use the following command:
 
     oc delete project <project-name>
+
+## References
 
 * [1] https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
 * [2] https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
