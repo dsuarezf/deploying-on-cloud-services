@@ -1,8 +1,12 @@
-# s2i-ultra-tiny-http-service
+# ultra-tiny-http-service
 
-This repository is an example of Source to Image (S2I) project to be deployed on Openshift Online.
+This repository contains a very simple HTTP server coded in Java to be used
+as a example project to deploy on Cloud Services as Openshift Online or Google
+Cloud Platform.
 
 The service itself is a tiny HTTP Server listening on port 8080.
+
+## Deploying on Openshift
 
 First of all we need to have the OpenShift CLI installed. It can be downloaded from the OpenShift
 site.
@@ -78,5 +82,5 @@ To delete the project we can use the following command:
 
 ## References
 
-* [1] https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
-* [2] https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
+* [1]: https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
+* [2]: https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
