@@ -1,15 +1,15 @@
 # ultra-tiny-http-service
 
 This repository contains a very simple HTTP server coded in Java to be used
-as a example project to deploy on Cloud Services as Openshift Online or Google
-Cloud Platform.
+as a example project to deploy on Cloud Services as [Openshift Online] or
+[Google Cloud App Engine].
 
 The service itself is a tiny HTTP Server listening on port 8080.
 
 ## Deploying on Openshift
 
-First of all we need to have the OpenShift CLI installed. It can be downloaded from the OpenShift
-site.
+First of all we need to have the OpenShift CLI installed. It can be downloaded
+from the OpenShift site.
 
 The first step is to login by typing:
 
@@ -51,22 +51,23 @@ And this is the output:
          'oc expose svc/s2i-ultra-tiny-http-service'
         Run 'oc status' to view your app.
 
-As we can see within the output, OpenShift uploads the code and creates a builder container based on
-the image *redhat-openjedk18-openshift*.
+As we can see within the output, OpenShift uploads the code and creates a builder
+container based on the image *redhat-openjedk18-openshift*.
 
 The builder's log can be seen by typing:
 
     oc logs -f bc/s2i-ultra-tiny-http-service
 
-The container is deployed within a Kubernete's pod and run as a service, we can see the service status
-by typing:
+The container is deployed within a Kubernetes' pod and run as a service, we can
+see the service status by typing:
 
     oc get service
     
     NAME                          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
     s2i-ultra-tiny-http-service   ClusterIP   172.30.137.215   <none>        8080/TCP,8443/TCP,8778/TCP   6m
 
-The just deployed service run within a cluster with IP 172.30.137.215 and ports 8080, 8443 and 8778.
+The just deployed service run within a cluster with IP 172.30.137.215 and ports
+8080, 8443 and 8778.
 
 The service can be exposed using:
 
@@ -80,7 +81,7 @@ To delete the project we can use the following command:
 
     oc delete project <project-name>
 
-## References
-
-* [1]: https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
-* [2]: https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
+[Google Cloud App Engine]: https://cloud.google.com/appengine
+[Openshift Online]: https://cloud.redhat.com/openshift/
+[1]: https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
+[2]: https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
