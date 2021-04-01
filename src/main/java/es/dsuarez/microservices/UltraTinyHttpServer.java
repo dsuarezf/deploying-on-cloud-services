@@ -24,7 +24,7 @@ public class UltraTinyHttpServer implements AutoCloseable {
     }
 
     private void handle(HttpExchange httpExchange) throws IOException {
-        String response = "<h1>Hello World!</h1>";
+        String response = "<h1>Otro proyecto!</h1>";
         httpExchange.sendResponseHeaders(HTTP_OK_STATUS, response.getBytes().length);
         OutputStream outputStream = httpExchange.getResponseBody();
         outputStream.write(response.getBytes());

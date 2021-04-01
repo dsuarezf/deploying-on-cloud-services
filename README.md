@@ -113,6 +113,21 @@ by creating container images depending on the language used, for the Java case
 it is mandatory to use Maven, and therefore, have a proper `pom.xml` project
 file in place.
 
+The first thing before deploying the service is to create a project by using the Google Cloud console. Once the project is created we can get its
+id to configure the SDK locally by typing:
+
+    gcloud app create --project=<project-id>
+
+It asks you to choose the region to deploy your application and that's all.
+
+To see the available projects and their IDs:
+
+    gcloud projects list
+
+To specify a project to deploy on, type:
+
+    gcloud config set project <project-id>
+
 To deploy the application just type:
 
     gcloud app deploy
@@ -148,6 +163,10 @@ This is more or less the output:
 As indicated, you can browse the application by just typing:
 
     gcloud app browse
+
+Whenever we want to see our changes in production use the `gcloud app deploy`
+command, the SDK will detect the change, it will regenerate the image and it
+will redeploy the service.
 
 [Google Cloud App Engine]: https://cloud.google.com/appengine
 [Google Cloud SDK]: https://cloud.google.com/sdk
