@@ -6,7 +6,9 @@ as a example project to deploy on Cloud Services as [Openshift Online] or
 
 The service itself is a tiny HTTP Server listening on port 8080.
 
-## Deploying on Openshift
+## Working with Openshift
+
+### Deploying on Openshift
 
 First of all we need to have the OpenShift CLI installed. It can be downloaded
 from the OpenShift site.
@@ -81,7 +83,9 @@ To delete the project we can use the following command:
 
     oc delete project <project-name>
 
-## Deploying on Google Cloud App Engine
+## Working with Google Cloud App Engine
+
+## Installation
 
 Google Cloud App Engine use the [Google Cloud SDK] (GKS) to ease the interaction
 with all the Google Cloud products. To install the SDK just follow the instructions
@@ -101,6 +105,49 @@ To verify everything is correctly installed we can execute:
 To see current configuration:
 
     gcloud config list
+
+## Deploying on Google Cloud App Engine
+
+As Openshift's S2i, Google App Engine is designed to easely deploy applications
+by creating container images depending on the language used, for the Java case
+it is mandatory to use Maven, and therefore, have a proper `pom.xml` project
+file in place.
+
+To deploy the application just type:
+
+    gcloud app deploy
+
+This is more or less the output:
+
+    Services to deploy:
+
+    descriptor:      [/home/dsuarez/projects/github/deploying-on-cloud-services/pom.xml]
+    source:          [/home/dsuarez/projects/github/deploying-on-cloud-services]
+    target project:  [java-app-307616]
+    target service:  [default]
+    target version:  [20210401t191429]
+    target url:      [https://java-app-307616.ew.r.appspot.com]
+
+    Do you want to continue (Y/n)?  Y
+
+    Beginning deployment of service [default]...
+    ╔════════════════════════════════════════════════════════════╗
+    ╠═ Uploading 14 files to Google Cloud Storage               ═╣
+    ╚════════════════════════════════════════════════════════════╝
+    File upload done.
+    Updating service [default]...done.                                                                          
+    Setting traffic split for service [default]...done.                                                         
+    Deployed service [default] to [https://java-app-307616.ew.r.appspot.com]
+
+    You can stream logs from the command line by running:
+    $ gcloud app logs tail -s default
+
+    To view your application in the web browser run:
+    $ gcloud app browse
+
+As indicated, you can browse the application by just typing:
+
+    gcloud app browse
 
 [Google Cloud App Engine]: https://cloud.google.com/appengine
 [Google Cloud SDK]: https://cloud.google.com/sdk
