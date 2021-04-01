@@ -94,6 +94,14 @@ To configure de SDK execute:
 This will authenticate with a Google Account, create or specify the default project
 and so on.
 
+To verify everything is correctly installed we can execute:
+
+    gcloud components list
+
+To see current configuration:
+
+    gcloud config list
+
 [Google Cloud App Engine]: https://cloud.google.com/appengine
 [Google Cloud SDK]: https://cloud.google.com/sdk
 [Openshift Online]: https://cloud.redhat.com/openshift/
