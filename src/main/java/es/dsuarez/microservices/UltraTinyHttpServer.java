@@ -5,6 +5,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class UltraTinyHttpServer implements AutoCloseable {
 
@@ -13,6 +16,8 @@ public class UltraTinyHttpServer implements AutoCloseable {
 
     private final HttpServer httpServer;
 
+    private static final Logger LOG = LogManager.getLogger(UltraTinyHttpServer.class);
+
     private UltraTinyHttpServer() throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(DEFAULT_PORT), 0);
 
@@ -20,7 +25,7 @@ public class UltraTinyHttpServer implements AutoCloseable {
 
         httpServer.setExecutor(null);
         httpServer.start();
-        System.out.println("Server started, can be accessed on http://localhost:" + DEFAULT_PORT);
+        LOG.info("Server started, can be accessed on http://localhost:{}", DEFAULT_PORT);
     }
 
     private void handle(HttpExchange httpExchange) throws IOException {
