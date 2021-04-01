@@ -1,4 +1,4 @@
-# ultra-tiny-http-service
+# deploying-on-cloud-services
 
 This repository contains a very simple HTTP server coded in Java to be used
 as a example project to deploy on Cloud Services as [Openshift Online] or
@@ -81,7 +81,22 @@ To delete the project we can use the following command:
 
     oc delete project <project-name>
 
+## Deploying on Google Cloud App Engine
+
+Google Cloud App Engine use the [Google Cloud SDK] (GKS) to ease the interaction
+with all the Google Cloud products. To install the SDK just follow the instructions
+[[3]].
+
+To configure de SDK execute:
+
+    gcloud init
+
+This will authenticate with a Google Account, create or specify the default project
+and so on.
+
 [Google Cloud App Engine]: https://cloud.google.com/appengine
+[Google Cloud SDK]: https://cloud.google.com/sdk
 [Openshift Online]: https://cloud.redhat.com/openshift/
 [1]: https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index
 [2]: https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-secrets-ssh-key-authentication
+[3]: https://cloud.google.com/sdk/docs/install
