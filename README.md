@@ -1,14 +1,14 @@
 # deploying-on-cloud-services
 
 This repository contains a very simple HTTP server coded in Java to be used
-as a example project to deploy on Cloud Services as [Openshift Online] or
+as a example project to deploy on Cloud Services as [OpenShift Online] or
 [Google Cloud App Engine].
 
 The service itself is a tiny HTTP Server listening on port 8080.
 
-## Working with Openshift
+## Working with OpenShift
 
-### Deploying on Openshift
+### Deploying on OpenShift
 
 First of all we need to have the OpenShift CLI installed. It can be downloaded
 from the OpenShift site.
@@ -26,6 +26,10 @@ We'll use the S2I to deploy our application:
     oc new-app redhat-openjdk18-openshift~https://github.com/dsuarezf/s2i-ultra-tiny-http-service.git
 
 And this is the output:
+
+<details>
+
+<summary>Click to see output</summary>
 
     --> Found image 5331d25 (4 months old) in image stream "openshift/redhat-openjdk18-openshift" under tag "latest" for "redhat-openjdk18-openshift"
     
@@ -52,6 +56,8 @@ And this is the output:
         Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
          'oc expose svc/s2i-ultra-tiny-http-service'
         Run 'oc status' to view your app.
+
+</details>
 
 As we can see within the output, OpenShift uploads the code and creates a builder
 container based on the image *redhat-openjedk18-openshift*.
@@ -85,7 +91,7 @@ To delete the project we can use the following command:
 
 ## Working with Google Cloud App Engine
 
-## Installation
+### Installation
 
 Google Cloud App Engine use the [Google Cloud SDK] (GKS) to ease the interaction
 with all the Google Cloud products. To install the SDK just follow the instructions
@@ -106,15 +112,16 @@ To see current configuration:
 
     gcloud config list
 
-## Deploying on Google Cloud App Engine
+### Deploying on Google Cloud App Engine
 
-As Openshift's S2i, Google App Engine is designed to easely deploy applications
+As OpenShift's S2i, Google App Engine is designed to easily deploy applications
 by creating container images depending on the language used, for the Java case
 it is mandatory to use Maven, and therefore, have a proper `pom.xml` project
 file in place.
 
-The first thing before deploying the service is to create a project by using the Google Cloud console. Once the project is created we can get its
-id to configure the SDK locally by typing:
+The first thing before deploying the service is to create a project by using the
+Google Cloud console. Once the project is created we can get its id to configure
+the SDK locally by typing:
 
     gcloud app create --project=<project-id>
 
@@ -133,6 +140,10 @@ To deploy the application just type:
     gcloud app deploy
 
 This is more or less the output:
+
+<details>
+
+<summary>Click to see output</summary>
 
     Services to deploy:
 
@@ -159,6 +170,8 @@ This is more or less the output:
 
     To view your application in the web browser run:
     $ gcloud app browse
+
+</details>
 
 As indicated, you can browse the application by just typing:
 
