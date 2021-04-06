@@ -5,6 +5,8 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,9 +32,9 @@ public class UltraTinyHttpServer implements AutoCloseable {
 
     private void handle(HttpExchange httpExchange) throws IOException {
         String response = "<h1>Otro proyecto!</h1>";
-        httpExchange.sendResponseHeaders(HTTP_OK_STATUS, response.getBytes().length);
+        httpExchange.sendResponseHeaders(HTTP_OK_STATUS, response.getBytes(StandardCharsets.UTF_8).length);
         OutputStream outputStream = httpExchange.getResponseBody();
-        outputStream.write(response.getBytes());
+        outputStream.write(response.getBytes(StandardCharsets.UTF_8));
         outputStream.close();
     }
 
