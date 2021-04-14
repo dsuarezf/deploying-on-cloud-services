@@ -6,6 +6,8 @@
     <groupId>es.dsuarez.microservices</groupId>
     <artifactId>ultra-tiny-http-service</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>ultra-tiny-http-service</name>
+    <description>Tiny HTTP server to be deployed as microservice</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
